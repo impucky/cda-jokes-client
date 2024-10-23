@@ -21,6 +21,7 @@ const setup = document.getElementById('setup');
 const joke = document.getElementById('joke');
 const punchline = document.getElementById('punchline');
 const newButton = document.getElementById('new-joke');
+const apiUrl = 'https://cda-jokes-api.onrender.com/v1/jokes/random';
 let jokeContent;
 
 punchline.addEventListener("click", () => {
@@ -37,7 +38,7 @@ newButton.addEventListener('click', () => {
 async function getJoke() {
   joke.style.opacity = 0;
   try {
-    const response = await fetch('https://cda-jokes-api.onrender.com/v1/jokes/random');
+    const response = await fetch(apiUrl);
     jokeContent = await response.json();
     if (jokeContent && jokeContent.hasOwnProperty("question")) {
       setup.innerHTML = jokeContent.question;

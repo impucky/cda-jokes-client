@@ -1,11 +1,11 @@
 ---
-import Image from "astro/components/Image.astro"
-import wrapper from "../assets/wrapper.png"
-import refresh from "../assets/refresh.svg?raw"
+import Image from "astro/components/Image.astro";
+import wrapper from "../assets/wrapper.png";
+import refresh from "../assets/refresh.svg?raw";
 ---
 
 <div id="carambar">
-  <Image src={wrapper} width={720} quality="max" loading="eager" alt="Emballage Carambar"/>
+  <Image src={wrapper} width={720} quality="max" loading="eager" alt="Emballage Carambar" />
   <div id="joke">
     <div id="setup">&nbsp;</div>
     <div id="punchline">&nbsp;</div>
@@ -16,47 +16,47 @@ import refresh from "../assets/refresh.svg?raw"
 </div>
 
 <script>
-// @ts-nocheck
-const setup = document.getElementById('setup');
-const joke = document.getElementById('joke');
-const punchline = document.getElementById('punchline');
-const newButton = document.getElementById('new-joke');
-const apiUrl = 'https://cda-jokes-api.onrender.com/v1/jokes/random';
-let jokeContent;
+  // @ts-nocheck
+  const setup = document.getElementById("setup");
+  const joke = document.getElementById("joke");
+  const punchline = document.getElementById("punchline");
+  const newButton = document.getElementById("new-joke");
+  const apiUrl = "https://cda-jokes-api.onrender.com/v1/jokes/random";
+  let jokeContent;
 
-punchline.addEventListener("click", () => {
-  punchline.style.filter = "none";
-  punchline.style.cursor = "auto";
-})
+  punchline.addEventListener("click", () => {
+    punchline.style.filter = "none";
+    punchline.style.cursor = "auto";
+  });
 
-newButton.addEventListener('click', () => {
-  getJoke();
-  punchline.style.filter = 'blur(5px)';
-  punchline.style.cursor = 'pointer';
-})
+  newButton.addEventListener("click", () => {
+    getJoke();
+    punchline.style.filter = "blur(5px)";
+    punchline.style.cursor = "pointer";
+  });
 
-async function getJoke() {
-  joke.style.opacity = 0;
-  try {
-    const response = await fetch(apiUrl);
-    jokeContent = await response.json();
-    if (jokeContent && jokeContent.hasOwnProperty("question")) {
-      setup.innerHTML = jokeContent.question;
-      punchline.innerHTML = jokeContent.answer;
-    } else showErr();
-  } catch (err) {
-      console.error(err)
+  async function getJoke() {
+    joke.style.opacity = 0;
+    try {
+      const response = await fetch(apiUrl);
+      jokeContent = await response.json();
+      if (jokeContent && jokeContent.hasOwnProperty("question")) {
+        setup.innerHTML = jokeContent.question;
+        punchline.innerHTML = jokeContent.answer;
+      } else showErr();
+    } catch (err) {
+      console.error(err);
       showErr();
+    }
+    joke.style.opacity = 1;
   }
-  joke.style.opacity = 1;
-}
 
-function showErr() {
-  setup.innerHTML = "Je suis à court de blagues :(";
-  punchline.innerHTML = "&nbsp;";
-}
+  function showErr() {
+    setup.innerHTML = "Je suis à court de blagues :(";
+    punchline.innerHTML = "&nbsp;";
+  }
 
-getJoke();
+  getJoke();
 </script>
 
 <style>
@@ -68,7 +68,7 @@ getJoke();
     align-items: center;
     justify-content: center;
     position: relative;
-    filter: drop-shadow(0 0 12px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.4));
   }
 
   img {
@@ -113,8 +113,7 @@ getJoke();
     cursor: pointer;
     &:hover {
       transform: scale(110%);
-      filter: drop-shadow(0 0 2px rgba(0,0,0,0.2)) brightness(110%);
+      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2)) brightness(110%);
     }
   }
-
 </style>

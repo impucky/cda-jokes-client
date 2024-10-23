@@ -1,0 +1,20 @@
+---
+import Image from "astro/components/Image.astro"
+import logo from "../assets/logo.png"
+---
+
+<header>
+<Image src={logo} width={300} quality="max" loading="eager" alt="Logo Carambar"/>
+</header>
+
+<style>
+  header {
+    height: 140px;
+    background: #fedb27;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2vw), 0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0 1.4rem 0;
+  }
+</style>
